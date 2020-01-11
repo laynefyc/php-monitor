@@ -26,13 +26,13 @@ class Controller{
         }
     }
 
-    protected function get($param,$default="",$func=null){
+    protected function get($param,$default="",$func=""){
         $this->requestDTO[$param] = !isset($_GET[$param])||empty($_GET[$param])?$default:$_GET[$param];
-        if($this->requestDTO[$param]!==""&&$func!==null) $func($param);
+        if($this->requestDTO[$param]!==""&&$func!=="") $func($param);
     }
-    protected function post($param,$default="",$func=null){
+    protected function post($param,$default="",$func=""){
         $this->requestDTO[$param] = !isset($_POST[$param])||empty($_POST[$param])?$default:$_POST[$param];
-        if($default!==""&&$func!==null) $func($param);
+        if($default!==""&&$func!=="") $func($param);
     }
 
     protected function response($arr){

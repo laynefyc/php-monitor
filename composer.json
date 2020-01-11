@@ -13,6 +13,8 @@
         }
     },
     "require": {
+        "php": "^5.6.1",
+        "ext-json": "*",
         "illuminate/database": "~5.8",
         "jenssegers/mongodb": "^3.5",
         "illuminate/pagination": "^5.8"

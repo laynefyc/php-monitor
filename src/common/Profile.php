@@ -244,7 +244,7 @@ class Profile
     {
         $valid = array_merge($this->_keys, $this->_exclusiveKeys);
         if (!in_array($metric, $valid)) {
-            throw new \Exception("Unknown metric '$metric'. Cannot generate flamegraph.");
+            throw new \InvalidArgumentException("Unknown metric '$metric'. Cannot generate flamegraph.");
         }
         $this->calculateSelf();
 
@@ -260,7 +260,7 @@ class Profile
         return array('data' => array_shift($flamegraph), 'sort' => $this->_visited);
     }
 
-    protected function _flamegraphData($parentName, $main, $metric, $threshold, $parentIndex = null)
+    protected function _flamegraphData($parentName, $main, $metric, $threshold)
     {
         $result = array();
         // Leaves don't have children, and don't have links/nodes to add.
