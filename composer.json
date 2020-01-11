@@ -1,0 +1,25 @@
+{
+    "name": "laynefyc/php-monitor",
+    "authors": [
+        {
+            "name": "layne.fyc",
+            "email": "layne.fyc@gmail.com"
+        }
+    ],
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://mirrors.aliyun.com/composer/"
+        }
+    },
+    "require": {
+        "illuminate/database": "~5.8",
+        "jenssegers/mongodb": "^3.5",
+        "illuminate/pagination": "^5.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "pm\\": "src/"
+        }
+    }
+}
