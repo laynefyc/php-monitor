@@ -1,7 +1,6 @@
 /vendor/
 /.idea/
 /.vscode/
-/src/db/
 .DS_Store
 ###> phpunit/phpunit ###
 /phpunit.xml
