@@ -10,7 +10,7 @@
 	cd php-monitor
 	composer update
 	````
-2. 设置数据存储方式（支持MySQL，MongoDB，Sqlite）
+2. 设置数据存储方式，支持MySQL，MongoDB，Sqlite
 	
 	如果使用MySQL请先运行如下建表语句：
 	
@@ -39,7 +39,7 @@
 	修改配置文件`src/config/config.php`
 	
 	````php
-	// 'save' => [
+    // 'save' => [
     //     'driver'    => 'mysql',
     //     'host'      => '127.0.0.1:3306',
     //     'database'  => 'php_monitor',
@@ -47,19 +47,19 @@
     //     'password'  => 'abcd1234',
     //     'charset'   => 'utf8mb4'
     // ],
-    'save' => [
-        'driver'    => 'mongodb',
-        'host'      => '127.0.0.1:27017',
-        'database'  => 'php_monitor',
-        'username'  => '',
-        'password'  => ''
-    ],
     // 'save' => [
-    //     'driver'    => 'file',
-    //     'database'  =>  dirname(__DIR__).'/db/pmonitor.data'
+    //     'driver'    => 'mongodb',
+    //     'host'      => '127.0.0.1:27017',
+    //     'database'  => 'php_monitor',
+    //     'username'  => '',
+    //     'password'  => ''
     // ],
+    'save' => [
+        'driver'    => 'sqlite',
+        'database'  =>  dirname(__DIR__).'/db/php_monitor.sqlite3'
+    ],
 	````
-	选择哪种数据存储方式请打开对应的注释，所有数据存储方式的表名都为`php_monitor`。
+	默认使用Sqlite，Sqlite是轻量级的文件数据库。如果使用其他数据库请取消对应的注释，另外所有数据存储方式的表名都为`php_monitor`。
 	
 	（非必须）如果使用的是MongoDB，可以在数据插入成功后添加索引（MongoDB会自己建表，所以索引要手动添加），添加方式如下：
 	
@@ -103,22 +103,56 @@
 	最简单的运行方式如下：
 	
 	````
-	cd php-monitor
+	cd php-monitor/public
 	php -S 127.0.0.1:8066
 	````
-	运行成功后请访问 [http://127.0.0.1:8066/public](http://127.0.0.1:8066/public)
-	使用Nginx时，配置最简单的路由即可。
+	运行成功后请访问 [http://127.0.0.1:8066](http://127.0.0.1:8066)
+	
+	如果使用Nginx，配置如下：
+	
+	````nginx
+    server {
+        listen       8066;
+        server_name  localhost;
+        root /home/www/cai/php-monitor;
+        index  index.php index.html;
+        location / {
+            root /home/www/cai/php-monitor;
+        }
+
+        location ~ \.php$ {
+            fastcgi_pass   127.0.0.1:9000;
+            include        fastcgi_params;
+            fastcgi_param  SCRIPT_FILENAME  $document_root/index.php;
+        }
+    }
+
+    ````
+6. 登录后台
+
+    登录口令直接在配置文件中修改，`src/config/config.php`。
+
+    ````
+    'user' => [
+        //login account and password
+        ['account'=>'php','password'=>'monitor'],
+        ['account'=>'moniter','password'=>'monitor']
+    ]
+
+    ````
+    如果对安全等级要求更高，请扩展 LoginController.php 文件的 accountAction 方法。
+
 	
 ## TODO
-1. 完善国际化；
-2. 完善文档；
-3. 重写xhprof扩展；
-4. Sqlite存储方式开发；
-5. CI流程接入；
-6. 补充单元测试；
-7. 埋点模块与展示模块拆分；
-8. Composer包封装；
-9. Docker接入；
+- [x] Sqlite存储方式开发；
+- [ ] 完善国际化；
+- [ ] 完善文档；
+- [ ] 重写xhprof扩展；
+- [ ] CI流程接入；
+- [ ] 补充单元测试；
+- [ ] 埋点模块与展示模块拆分；
+- [ ] Composer包封装；
+- [ ] Docker接入；
 	
 ## 反馈
 提交ISSUE或者加我微信

@@ -3,7 +3,7 @@ namespace pm\common;
 
 use pm\model\MysqlMonitor;
 use pm\model\MongoMonitor;
-use pm\model\FileMonitor;
+use pm\model\SqliteMonitor;
 
 class Controller{
 
@@ -22,7 +22,7 @@ class Controller{
         }elseif($this->driver === 'mongodb'){
             return new MongoMonitor();
         }else{
-            return new FileMonitor();
+            return new SqliteMonitor();
         }
     }
 

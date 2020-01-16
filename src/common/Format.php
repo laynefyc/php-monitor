@@ -3,7 +3,7 @@ namespace pm\common;
 use Illuminate\Database\Capsule\Manager as Capsule; 
 use pm\model\MysqlMonitor;
 use pm\model\MongoMonitor;
-use pm\model\FileMonitor;
+use pm\model\SqliteMonitor;
 class Format{
 
     protected $_profile = [];
@@ -22,22 +22,18 @@ class Format{
 
     public function initDb($db){
         //init ORM
-        if($this->_dbName === 'file'){
-            FileMonitor::$_file = $db['database'];
-        }else{
-            $capsule = new Capsule();
-            if($this->_dbName === 'mongodb')
+        $capsule = new Capsule();
+        if($this->_dbName === 'mongodb')
+        {
+            $capsule->getDatabaseManager()->extend('mongodb', function($config, $name)
             {
-                $capsule->getDatabaseManager()->extend('mongodb', function($config, $name)
-                {
-                    $config['name'] = $name;
-                    return new \Jenssegers\Mongodb\Connection($config);
-                });
-            }
-            $capsule->addConnection($db);
-            $capsule->setAsGlobal();
-            $capsule->bootEloquent();
+                $config['name'] = $name;
+                return new \Jenssegers\Mongodb\Connection($config);
+            });
         }
+        $capsule->addConnection($db);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
     }
 
     public function save(){
@@ -62,8 +58,8 @@ class Format{
             return (new MongoMonitor())->insertData($saveData);
         }elseif ( $this->_dbName === 'mysql' ) {
             return (new MysqlMonitor())->insertData($saveData);
-        }elseif ( $this->_dbName === 'file' ) {
-            return (new FileMonitor())->insertData($saveData);
+        }elseif ( $this->_dbName === 'sqlite' ) {
+            return (new SqliteMonitor())->insertData($saveData);
         }else{
             return false;
         }

@@ -1,7 +1,7 @@
 <?php
 namespace pm\common;
 use Illuminate\Database\Capsule\Manager as Capsule; 
-use pm\model\FileMonitor;
+use pm\model\SqliteMonitor;
 class Router{
     public $_driver = '';
     public $_config = [];
@@ -18,22 +18,18 @@ class Router{
         //init ORM
         $dbName = strtolower($db['driver']);
         $this->_driver = $dbName;
-        if($dbName === 'file'){
-            FileMonitor::$_file = $db['database'];
-        }else{
-            $capsule = new Capsule();
-            if($dbName === 'mongodb')
+        $capsule = new Capsule();
+        if($dbName === 'mongodb')
+        {
+            $capsule->getDatabaseManager()->extend('mongodb', function($config, $name)
             {
-                $capsule->getDatabaseManager()->extend('mongodb', function($config, $name)
-                {
-                    $config['name'] = $name;
-                    return new \Jenssegers\Mongodb\Connection($config);
-                });
-            }
-            $capsule->addConnection($db);
-            $capsule->setAsGlobal();
-            $capsule->bootEloquent();
+                $config['name'] = $name;
+                return new \Jenssegers\Mongodb\Connection($config);
+            });
         }
+        $capsule->addConnection($db);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
     }
 
     public function run(){

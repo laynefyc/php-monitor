@@ -105,7 +105,6 @@ class PMonitor{
         }else{
             throw new \Exception("Please check the extension name in config/config.default.php \r\n,you can use the 'php -m' command.", 1);
         }
-
         // ignore_user_abort(true) allows your PHP script to continue executing, even if the user has terminated their request.
         // Further Reading: http://blog.preinheimer.com/index.php?/archives/248-When-does-a-user-abort.html
         // flush() asks PHP to send any data remaining in the output buffers. This is normally done when the script completes, but
@@ -119,10 +118,6 @@ class PMonitor{
             $cmd = basename($_SERVER['argv'][0]);
             $uri = $cmd . ' ' . implode(' ', array_slice($_SERVER['argv'], 1));
         }
-    
-        $time = array_key_exists('REQUEST_TIME', $_SERVER)
-            ? $_SERVER['REQUEST_TIME']
-            : time();
         $requestTimeFloat = explode('.', $_SERVER['REQUEST_TIME_FLOAT']);
         if (!isset($requestTimeFloat[1])) {
             $requestTimeFloat[1] = 0;
