@@ -140,10 +140,10 @@ git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && compo
     server {
         listen       8066;
         server_name  localhost;
-        root /home/www/cai/php-monitor;
+        root /home/www/cai/php-monitor/public;
         index  index.php index.html;
         location / {
-            root /home/www/cai/php-monitor;
+            root /home/www/cai/php-monitor/public;
         }
 
         location ~ \.php$ {
