@@ -8,6 +8,8 @@
 git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && composer update && cd public && php -S 127.0.0.1:8066
 ````
 
+访问 127.0.0.1:8066 会要求输入账号和密码，默认都为 php
+
 ## 详细教程
 
 使用此工具前，请确定已安装uprofiler,xhprof,tideways等扩展（默认只能安装一个）。
@@ -156,16 +158,16 @@ git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && compo
     ````
 6. 登录后台
 
-    登录口令直接在配置文件中修改，`src/config/config.php`。
+    登录账号密码可以直接在配置文件中修改，`src/config/config.php`。
 
     ````
     'user' => [
         //login account and password
-        ['account'=>'php','password'=>'monitor'],
-        ['account'=>'moniter','password'=>'monitor']
+        ['account'=>'php','password'=>'php'],
+        ['account'=>'admin','password'=>'abcd']
     ]
-
     ````
+    一定要修改，不要使用默认配置。
     如果对安全等级要求更高，请扩展 LoginController.php 文件的 accountAction 方法。
 
 	
