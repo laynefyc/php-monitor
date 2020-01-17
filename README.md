@@ -1,7 +1,14 @@
 # php-monitor
 新PHP非侵入式监控平台- 只能用来优化性能，定位Bug，分析请求。
 
-## 使用教程
+# 一步安装
+只需要一句命令就能运行项目
+
+````bash
+git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && composer update && cd public && php -S 127.0.0.1:8066
+````
+
+## 详细教程
 
 使用此工具前，请确定已安装uprofiler,xhprof,tideways等扩展（默认只能安装一个）。
 
@@ -73,19 +80,36 @@
 	````
 4. 项目中埋点文件
 	
-	在项目中埋点有两种方式，一是通过Nginx配置：
+	在项目中埋点有两种方式，一是通过Nginx配置。比如你当前有个网站 www.site.com 在运行，你只需要加一行配置就能让该网站接入php-monitor：
 	
+	````nginx
+	fastcgi_param PHP_VALUE "auto_prepend_file={php-monitor-path}/src/autoPrepend.php";
+
+    ````
+    添加配置后的效果如下（其他内容只是为了演示说明，并不是要求你的nginx配置和我的一样）：
+    
 	````nginx
 	server {
 	  listen 80;
-	  server_name site.localhost;
+	  server_name www.site.com;
 	  root your/webroot/; 
-	  fastcgi_param PHP_VALUE "auto_prepend_file={php-monitor-path}/src/autoPrepend.php";
+      location ~ \.php$ {
+          fastcgi_pass   127.0.0.1:9000;
+          include        fastcgi_params;
+          fastcgi_param  SCRIPT_FILENAME  $document_root/index.php;
+          fastcgi_param PHP_VALUE "auto_prepend_file={php-monitor-path}/src/autoPrepend.php";
+      }
 	}
 	````
 	Nginx的这种方式本质上是在调用PHP提供的`auto_prepend_file`接口，接口文档 [https://www.php.net/manual/zh/ini.core.php#ini.auto-prepend-file](https://www.php.net/manual/zh/ini.core.php#ini.auto-prepend-file)，需要重启nginx和清空opcache.
 	
 	第二种方式是直接在需要监控项目的入口文件加载，通常是在`index.php`中添加：
+	
+	````php
+	require '/home/www/cai/php-monitor/src/autoPrepend.php';
+    ````
+    
+	添加配置后的效果如下（除核心代码，其他代码都是为了演示说明）:
 	
 	````php
 	<?php
