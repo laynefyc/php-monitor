@@ -38,14 +38,15 @@ class Router{
             throw new \InvalidArgumentException("URL error, like index.php?r=api/test.", 1);
         }else{
             if(preg_match('/^[a-zA-Z]{1,32}$/U',$r[0]) === 1){
-                $controller = '\pm\controller\\'.$r[0].'Controller';
+                $c = ucfirst(strtolower($r[0]));
+                $controller = '\pm\controller\\'.$c.'Controller';
             }else{
                 throw new \InvalidArgumentException("Controller names can only contain letters.", 1);
             }
             if(preg_match('/^[a-zA-Z-]{0,32}$/U',$r[1]) === 1){
                 $actionName = preg_replace_callback('/([-]+([a-z]{1}))/i',function($matches){
                     return strtoupper($matches[2]);
-                },$r[1]);
+                },strtolower($r[1]));
                 $action = $actionName.'Action';
             }else{
                 throw new \InvalidArgumentException("Action names can only contain letters and '-'.", 1);
