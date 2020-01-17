@@ -36,7 +36,7 @@ return [
     ],
     'user' => [
         //login account and password
-        ['account'=>'php','password'=>'monitor'],
-        ['account'=>'moniter','password'=>'monitor']
+        ['account'=>'php','password'=>'php'],
+        ['account'=>'admin','password'=>'abcd']
     ]
 ];
