@@ -1,9 +1,7 @@
 <h1 align="center">php-monitor</h1>
 
 <div align="center">
-
-A free, flexible, powerful tool that helps you monitor PHP Service.
-
+一个免费、易用、强大的PHP服务监控工具。
 </div>
 
 ![home](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/home.png)
@@ -14,32 +12,34 @@ A free, flexible, powerful tool that helps you monitor PHP Service.
 
 ![url](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/url.png)
 
-English | [简体中文](./README-zh_CN.md)
 
-## ✨ Features
+[English](./README.md) | 简体中文
+## ✨ 特性
 
-- 🌈 Get detailed PHP runtime data.
-- 🌍 Monitor production environment time consuming requests.
-- 🛡 Displays the memory and CPU consumption of the underlying function.
-- 🎨 Use various kinds of visual graphics to display data.
+- 🌈 获取详细的PHP运行时数据。
+- 🌍 监控生产环境耗时请求。
+- 🛡 显示底层函数的内存与CPU消耗。
+- 🎨 运用各种可视化图形显示数据。
 
-## ⚙️ System requirements
-- uprofiler,xhprof,tideways php extension(default tideways).
+## ⚙️ 系统要求
+
+- uprofiler,xhprof,tideways等扩展（安装多个会有冲突，默认安装tideways）
 - composer
 - PHP 5.6+
 
-# Install tideways extension
+## tideways扩展安装
 
 ````bash
 wget --no-check-certificate https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz  && tar zxvf v4.1.7.tar.gz && cd php-xhprof-extension-4.1.7 && phpize && ./configure && make && sudo make install
 
 ````
-Add configuration data on `php.ini`.You should see something like:
+
+安装后需要在`php.ini`文件中添加扩展引入命令：
 
 ````bash
 extension=tideways.so
 ````
-Once installed, you can use the following command to check:
+通过如下命令可查看扩展是否安装成功：
 
 ````bash
 > php --ri tideways
@@ -47,13 +47,13 @@ tideways
 tideways => 4.1.7
 ````
 
-# Install php-monitor
+## php-monitor服务安装
 
 ````bash
 git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && composer update  --ignore-platform-reqs && cd public && php -S 127.0.0.1:8066
 ````
 
-Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and password(php/php).
+访问 [http://127.0.0.1:8066](http://127.0.0.1:8066) 会要求输入账号和密码，默认都为 php
 
 ## 详细教程
 
