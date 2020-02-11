@@ -6,15 +6,46 @@ PHP非侵入式监控平台，可通过uprofiler、xhprof、tideways等PHP扩展
 3. 显示底层函数的内存与CPU消耗
 4. 运用各种可视化图形显示数据，帮助开发者对服务有更清晰的了解
 
+效果如下：
+
+![home](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/home.png)
+
+![](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/infomation.png)
+
+![flame](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/flame.png)
+
+![url](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/url.png)
+
+
 # 服务运行条件
-1. 需要uprofiler,xhprof,tideways等性能扩展（安装多个会有冲突）；
+1. 需要uprofiler,xhprof,tideways等扩展（安装多个会有冲突，默认安装tideways）；
 2. 需要安装composer；
 3. 需要PHP5.6+
 
-# 安装服务
+# 安装tideways扩展
 
 ````bash
-git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && composer update && cd public && php -S 127.0.0.1:8066
+wget --no-check-certificate https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz  && tar zxvf v4.1.7.tar.gz && cd php-xhprof-extension-4.1.7 && phpize && ./configure && make && sudo make install
+
+````
+
+安装后需要在`php.ini`文件中添加扩展引入命令：
+
+````bash
+extension=tideways.so
+````
+通过如下命令可查看扩展是否安装成功：
+
+````bash
+> php --ri tideways
+tideways
+tideways => 4.1.7
+````
+
+# 安装php-monitor服务
+
+````bash
+git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && composer update  --ignore-platform-reqs && cd public && php -S 127.0.0.1:8066
 ````
 
 访问 [http://127.0.0.1:8066](http://127.0.0.1:8066) 会要求输入账号和密码，默认都为 php
@@ -203,6 +234,6 @@ git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && compo
 ## 反馈
 提交ISSUE或者加我微信
 
-![https://github.com/laynefyc/xhgui-branch/blob/screenshot/screenshot/code-log1.png](https://github.com/laynefyc/xhgui-branch/blob/screenshot/screenshot/code-log1.png)
+![微信号城边编程](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/code-log.png)
 
 [http://imgs.it2048.cn/code-log.png](http://imgs.it2048.cn/code-log.png)
