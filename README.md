@@ -57,7 +57,7 @@ git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && compo
 	````bash
 	git clone https://github.com/laynefyc/php-monitor.git
 	cd php-monitor
-	composer update
+	composer update --ignore-platform-reqs
 	````
 2. 设置数据存储方式，支持MySQL，MongoDB，Sqlite
 	
