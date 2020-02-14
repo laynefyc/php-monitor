@@ -8,12 +8,6 @@
             "email": "layne.fyc@gmail.com"
         }
     ],
-    "repositories": {
-        "packagist": {
-            "type": "composer",
-            "url": "https://mirrors.aliyun.com/composer/"
-        }
-    },
     "require": {
         "php": "^5.6 || ^7.0",
         "ext-json": "*",
