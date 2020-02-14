@@ -15,8 +15,7 @@ before_script:
   - echo "extension=tideways.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo "tideways.auto_prepend_library=0" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - phpenv rehash
-  - composer install --prefer-dist --dev --ignore-platform-reqs 
-  - chmod -R 0777 cache/
+  - composer install --prefer-dist --dev --ignore-platform-reqs
 
 script:
   - >
