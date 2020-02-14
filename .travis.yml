@@ -33,4 +33,4 @@ before_script:
   - if [[ "$XHPROF_VERSION" == "4.1.7" ]]; then composer require --dev phpunit/phpunit "^9" --ignore-platform-reqs --quiet; fi
   - composer install --prefer-dist --dev --ignore-platform-reqs
 
-script: phpunit
+script: ./vendor/bin/phpunit
