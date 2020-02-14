@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
+
 use PHPUnit\Framework\TestCase;
 use pm\common\PMonitor;
 use pm\model\SqliteMonitor;
-class PMonitorTest extends TestCase
+final class PMonitorTest extends TestCase
 {
     public function testMonitor()
     {
