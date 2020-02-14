@@ -228,7 +228,7 @@ git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && compo
 ## TODO
 - [x] Sqlite存储方式开发；
 - [x] 完善国际化；
-- [ ] 完善文档；
+- [x] 完善文档；
 - [ ] 重写xhprof扩展；
 - [ ] CI流程接入；
 - [ ] 补充单元测试；

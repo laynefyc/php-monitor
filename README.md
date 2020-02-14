@@ -65,7 +65,7 @@ Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and passw
 	composer update --ignore-platform-reqs
 	````
 2. The project can set data storage mode and supports mysql, mongodb, SQLite.	
-Set in configuration file 'Src / config / config. PHP',The information is as follows:
+Set in configuration file `src/config/config.php`,The information is as follows:
 	
 	````php
     // 'save' => [
@@ -196,7 +196,7 @@ Set in configuration file 'Src / config / config. PHP',The information is as fol
 	````
 	This way is to use the `auto_prepend_file` interface provided by PHP，interfaceing [https://www.php.net/manual/zh/ini.core.php#ini.auto-prepend-file](https://www.php.net/manual/zh/ini.core.php#ini.auto-prepend-file).You need to restart nginx after adding configuration.
 	
-	The second way is to import the entry file that needs to monitor the project directly , usually add it in `public / index.php`：
+	The second way is to import the entry file that needs to monitor the project directly , usually add it in `public/index.php`：
 	
 	````php
 	require '/home/www/cai/php-monitor/src/autoPrepend.php';
@@ -226,7 +226,7 @@ Set in configuration file 'Src / config / config. PHP',The information is as fol
 ## TODO
 - [x] Sqlite storage mode development；
 - [x] Perfect internationalization；
-- [ ] Improve documentation；
+- [x] Improve documentation；
 - [ ] Rewrite xhprof extension；
 - [ ] CI process access；
 - [ ] Supplementary unit test；
