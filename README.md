@@ -4,8 +4,7 @@
 
 A free, flexible, powerful tool that helps you monitor PHP Service.
 
-[![Latest Stable Version](https://poser.pugx.org/laynefyc/php-monitor/v/stable.png)]
-(https://packagist.org/packages/laynefyc/php-monitor)
+[![Latest Stable Version](https://poser.pugx.org/laynefyc/php-monitor/v/stable.png)](https://packagist.org/packages/laynefyc/php-monitor)
 [![Total Downloads](https://poser.pugx.org/laynefyc/php-monitor/downloads.png)](https://packagist.org/packages/laynefyc/php-monitor)
 </div>
 
