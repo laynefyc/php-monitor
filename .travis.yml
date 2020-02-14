@@ -26,8 +26,6 @@ before_script:
   - echo "extension=tideways.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo "tideways.auto_prepend_library=0" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - phpenv rehash
-  - if [[ $TRAVIS_PHP_VERSION == 5.6 ]]; then composer require --dev phpunit/phpunit "^5" --ignore-platform-reqs --quiet; fi
-  - if [[ $TRAVIS_PHP_VERSION == 7.0 ]]; then composer require --dev phpunit/phpunit "^5" --ignore-platform-reqs --quiet; fi 
   - if [[ $TRAVIS_PHP_VERSION > 7.0 ]]; then composer require --dev phpunit/phpunit "^7" --ignore-platform-reqs --quiet; fi 
   - composer install --prefer-dist --dev --ignore-platform-reqs
 
