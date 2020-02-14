@@ -55,18 +55,17 @@ git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && compo
 
 Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and password(php/php).
 
-## 详细教程
+## Detailed installation tutorial
 
-1. 下载&更新项目
+1. Download & Update Projects
 
 	````bash
 	git clone https://github.com/laynefyc/php-monitor.git
 	cd php-monitor
 	composer update --ignore-platform-reqs
 	````
-2. 设置数据存储方式，支持MySQL，MongoDB，Sqlite
-	
-	在配置文件`src/config/config.php`中设置，信息如下：
+2. The project can set data storage mode and supports mysql, mongodb, SQLite.	
+Set in configuration file 'Src / config / config. PHP',The information is as follows:
 	
 	````php
     // 'save' => [
@@ -89,53 +88,53 @@ Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and passw
         'database'  =>  dirname(__DIR__).'/db/php_monitor.sqlite3'
     ],
 	````
-	本项目默认使用Sqlite，因为Sqlite是轻量级的文件数据库。如果使用其他数据库请取消对应的注释。
+	SQLite is used by default in this project，if you use other databases, please uncomment them.
 	
-	使用MySQL请运行如下建表语句（表名不可修改）：
+	If you want to use Mysql to run the following table creation statement (table name cannot be modified):
 	
 	````sql
 	CREATE TABLE `php_monitor` (
-		`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增编号',
-		`url` text CHARACTER SET utf8 COMMENT '请求URL',
-		`server_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '服务名',
-		`get` text COMMENT 'GET参数',
-		`pmu` int(11) unsigned DEFAULT NULL COMMENT '内存峰值',
-		`wt` int(11) unsigned DEFAULT NULL COMMENT '总耗时微秒',
-		`cpu` int(11) unsigned DEFAULT NULL COMMENT '总cpu周期时间',
-		`ct` int(3) NOT NULL COMMENT '总调用次数',
-		`mu` int(11) unsigned DEFAULT NULL COMMENT '当前内存消耗',
-		`request_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '请求时间，到秒',
-		`request_time_micro` int(10) unsigned DEFAULT '0' COMMENT '请求微秒',
-		`profile` longblob NOT NULL COMMENT '性能数据',
-		`server` longblob COMMENT 'SERVER参数',
-		`type` varchar(16) DEFAULT NULL COMMENT '请求类型GET，POST',
-		`ip` varchar(16) DEFAULT NULL COMMENT 'IP地址',
+		`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Auto-increment number ',
+		`url` text CHARACTER SET utf8 COMMENT 'Request URL',
+		`server_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT 'Service name',
+		`get` text COMMENT 'GET parameter',
+		`pmu` int(11) unsigned DEFAULT NULL COMMENT 'Memory spike',
+		`wt` int(11) unsigned DEFAULT NULL COMMENT 'Total time spent in microseconds',
+		`cpu` int(11) unsigned DEFAULT NULL COMMENT 'Total CPU cycle time',
+		`ct` int(3) NOT NULL COMMENT 'Total calls',
+		`mu` int(11) unsigned DEFAULT NULL COMMENT 'Current memory consumption',
+		`request_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Request time accurate to seconds',
+		`request_time_micro` int(10) unsigned DEFAULT '0' COMMENT 'Request time accurate to microseconds',
+		`profile` longblob NOT NULL COMMENT 'performance data,
+		`server` longblob COMMENT 'SERVER parameter',
+		`type` varchar(16) DEFAULT NULL COMMENT 'Request time includes GET，POST',
+		`ip` varchar(16) DEFAULT NULL COMMENT 'IP address',
 		PRIMARY KEY (`id`),
 		KEY `idx_url` (`url`),
 		KEY `idx_ip` (`ip`)
 	) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 	````
 	
-	使用MongoDB数据库会自己建表，但需要自己添加索引，添加方式如下：
+	Mongodb database will build its own tables, but it needs to add indexes by yourself.The adding way as follows：
 	
 	````bash
 	show dbs
-	use php_monitor //数据库选择你自己的
+	use php_monitor //Please select your own database
 	db.php_monitor.createIndex({"url":1})
 	db.php_monitor.createIndex({"ip":1})
 	````
-	所有数据存储方式的表名都必须为 `php_monitor` 不支持修改。
+	The table name for all data storage methods must be `php_monitor` and does not support modification.
 	
-3. 运行本监控平台
+3. The operation of monitoring platform
 
-	测试时可直接通过如下命令如下：
+	It can directly pass the following command during testing：
 	````
 	cd php-monitor/public
 	php -S 127.0.0.1:8066
 	````
-	运行成功后直接访问 [http://127.0.0.1:8066](http://127.0.0.1:8066)
+	After running successfully ,It can be accessed [http://127.0.0.1:8066](http://127.0.0.1:8066)directly .
 	
-	非测试环境请使用Nginx，配置如下：
+	Non-test environment please use Nginx.The configuration is as follows：
 	
 	````nginx
     server {
@@ -155,9 +154,9 @@ Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and passw
     }
 
     ````
-4. 登录后台
+4. Login background
 
-    登录账号密码可以直接在配置文件中修改，`src/config/config.php`。
+    Login account password can be modified directly in the configuration file，`src/config/config.php`。
 
     ````
     'user' => [
@@ -166,22 +165,21 @@ Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and passw
         ['account'=>'admin','password'=>'abcd']
     ]
     ````
-    account是帐号，password是密码，发布后请及时修改。
-    如果对安全等级要求更高，请扩展 LoginController.php 文件的 accountAction 方法。
+    Please change the account number and password in time after release.
+    If you require a higher level of security, please extend the method of Login Controller.php file.
 		
-5. 在需要监控的项目中引入监控
+5. Introduce monitoring into the project.
 	
-	本项目采用非侵入式的方式进行项目监控，对运行中的服务不会有任何干扰。
+	The project is monitored in a non-invasive way, without any interference to the service in operation.
 	
-	在项目中添加监控有两种方式，一是修改Nginx配置：
+	There are two ways to add monitoring to a project. One is to modify the nginx configuration：
 	
-	比如要对运行中的服务 www.site.com 做监控，你只需要在Nginx配置文件中加一行配置信息
-	
+	For example, to monitor the running service www.site.com, you only need to add a line of configuration information in the nginx configuration file	
 	````nginx
 	fastcgi_param PHP_VALUE "auto_prepend_file={php-monitor-path}/src/autoPrepend.php";
 
     ````
-    添加配置后的效果如下（其他内容只是为了演示说明，并不是要求你的nginx配置和我的一样）：
+    The effect of adding configuration is as follows (other content is just for demonstration, not the same nginx configuration)：
     
 	````nginx
 	server {
@@ -196,48 +194,48 @@ Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and passw
       }
 	}
 	````
-	这种方式是使用PHP提供的`auto_prepend_file`接口，接口文档 [https://www.php.net/manual/zh/ini.core.php#ini.auto-prepend-file](https://www.php.net/manual/zh/ini.core.php#ini.auto-prepend-file)，添加配置后需要重启nginx.
+	This way is to use the `auto_prepend_file` interface provided by PHP，interfaceing [https://www.php.net/manual/zh/ini.core.php#ini.auto-prepend-file](https://www.php.net/manual/zh/ini.core.php#ini.auto-prepend-file).You need to restart nginx after adding configuration.
 	
-	第二种方式是直接在需要监控项目的入口文件引入，通常是在`public/index.php`中添加：
+	The second way is to import the entry file that needs to monitor the project directly , usually add it in `public / index.php`：
 	
 	````php
 	require '/home/www/cai/php-monitor/src/autoPrepend.php';
     ````
     
-	添加配置后的效果如下（除核心代码，其他代码都是为了演示说明）:
+	The effect after adding configuration is as follows (except the core code, the other code is for demonstration):
 	
 	````php
 	<?php
 	use pm\common\Router;
 	
-	//核心代码在此
+	//The core code is here
 	require '/home/www/cai/php-monitor/src/autoPrepend.php';
 	
 	include 'vendor/autoload.php';
 	$config = require('src/config/config.php');
 	(new Router($config))->run();
 	````
-	添加埋点之后，www.site.com 项目的请求记录可在 [http://127.0.0.1:8066](http://127.0.0.1:8066) 监控后台查看。
+	After adding the burying point, the request record of www.site.com project can be viewed in the [http://127.0.0.1:8066](http://127.0.0.1:8066) monitoring background. 
 	
-6. 更多细节
+6. More details
 
-	* MongoDB的存储速度最快，如果对性能要求高，请优先使用它；
-	* 修改配置文件的 profiler.enable 属性来修改采样频率，通常来说并不需要将所有请求都存储。比如 `rand(1, 100) > 60` 就是设置采样率为`40%`；
-	* 修改配置文件的 profiler. filter_path 属性来过滤不想收集的服务，比如一些不关心执行效率的内网服务；
+	* MongoDB has the fastest storage speed. If you have high performance requirements, please use it first.
+	* Modify the profile.enable property of the configuration file to modify the sampling frequency. Generally speaking, it is not necessary to store all requests.For example, 'rand (1, 100) > 60' is to set the sampling rate to '40%';
+	* Modify the profiler.filter_path attribute of the configuration file to filter services that you do not want to collect, such as some intranet services that do not care about execution efficiency；
 	
 ## TODO
-- [x] Sqlite存储方式开发；
-- [x] 完善国际化；
-- [ ] 完善文档；
-- [ ] 重写xhprof扩展；
-- [ ] CI流程接入；
-- [ ] 补充单元测试；
-- [ ] 埋点模块与展示模块拆分；
-- [ ] Composer包封装；
-- [ ] Docker接入；
+- [x] Sqlite storage mode development；
+- [x] Perfect internationalization；
+- [ ] Improve documentation；
+- [ ] Rewrite xhprof extension；
+- [ ] CI process access；
+- [ ] Supplementary unit test；
+- [ ] Separation of buried point module and display module；
+- [ ] Composer package encapsulation；
+- [ ] Docker access；
 	
-## 反馈
-提交ISSUE或者加我微信
+## Feedback
+Please submit your issues.
 
 ![微信号城边编程](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/code-log.png)
 
