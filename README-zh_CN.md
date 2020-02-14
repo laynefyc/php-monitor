@@ -5,6 +5,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/laynefyc/php-monitor/v/stable.png)](https://packagist.org/packages/laynefyc/php-monitor)
 [![Total Downloads](https://poser.pugx.org/laynefyc/php-monitor/downloads.png)](https://packagist.org/packages/laynefyc/php-monitor)
+[![Build Status](https://travis-ci.org/laynefyc/php-monitor.svg?branch=master)](https://travis-ci.org/laynefyc/php-monitor)
 </div>
 
 ![home](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/home.png)
@@ -31,7 +32,7 @@
 - PHP 5.6+
 
 ## tideways扩展安装
-
+如果使用PHP 5.6，请下载tideways v4.1.5
 ````bash
 wget --no-check-certificate https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz  && tar zxvf v4.1.7.tar.gz && cd php-xhprof-extension-4.1.7 && phpize && ./configure && make && sudo make install
 
@@ -237,11 +238,11 @@ composer create-project --prefer-dist --ignore-platform-reqs laynefyc/php-monito
 - [x] Sqlite存储方式开发；
 - [x] 完善国际化；
 - [x] 完善文档；
+- [x] CI流程接入；
+- [x] 补充单元测试；
+- [x] Composer包封装；
 - [ ] 重写xhprof扩展；
-- [ ] CI流程接入；
-- [ ] 补充单元测试；
 - [ ] 埋点模块与展示模块拆分；
-- [ ] Composer包封装；
 - [ ] Docker接入；
 	
 ## 反馈

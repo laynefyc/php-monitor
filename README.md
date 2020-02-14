@@ -33,7 +33,8 @@ English | [简体中文](./README-zh_CN.md)
 - PHP 5.6+
 
 # Install tideways extension
-
+PHP 5.6(download tideways v4.1.5)
+PHP 7.0+(download tideways v4.1.7)
 ````bash
 wget --no-check-certificate https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz  && tar zxvf v4.1.7.tar.gz && cd php-xhprof-extension-4.1.7 && phpize && ./configure && make && sudo make install
 
@@ -236,11 +237,11 @@ Set in configuration file `src/config/config.php`,The information is as follows:
 - [x] Sqlite storage mode development；
 - [x] Perfect internationalization；
 - [x] Improve documentation；
+- [x] CI process access；
+- [x] Supplementary unit test；
+- [x] Composer package encapsulation；
 - [ ] Rewrite xhprof extension；
-- [ ] CI process access；
-- [ ] Supplementary unit test；
 - [ ] Separation of buried point module and display module；
-- [ ] Composer package encapsulation；
 - [ ] Docker access；
 	
 ## Feedback
