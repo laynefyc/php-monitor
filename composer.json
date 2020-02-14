@@ -1,6 +1,6 @@
 {
     "name": "laynefyc/php-monitor",
-    "description": "PHP Non-intrusive performance monitoring platform by uprofiler,xhprof,tideways.",
+    "description": "A free, flexible, powerful tool that helps you monitor PHP Service.",
     "license": "MIT",
     "authors": [
         {
