@@ -20,7 +20,7 @@ matrix:
       env: XHPROF_VERSION="4.1.7"
     - php: 7.3
       env: XHPROF_VERSION="4.1.7"
-	- php: 7.4
+    - php: 7.4
       env: XHPROF_VERSION="4.1.7"
 
 before_script:
