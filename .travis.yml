@@ -7,6 +7,9 @@ php:
   - 7.2
   - 7.3
   - 7.4
+env:
+  - XHPROF_VERSION="4.1.5"
+  - XHPROF_VERSION="4.1.7"
 
 matrix:
   exclude:
