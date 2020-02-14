@@ -22,8 +22,8 @@ matrix:
     - php: 7.2
       env: XHPROF_VERSION="4.1.5"
     - php: 7.3
-	  env: XHPROF_VERSION="4.1.5"
-	- php: 7.4
+      env: XHPROF_VERSION="4.1.5"
+    - php: 7.4
       env: XHPROF_VERSION="4.1.5"
 
 before_script:
