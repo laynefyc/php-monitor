@@ -133,7 +133,6 @@ class PMonitor{
         );
         
         $obj = new Format($data,self::$dbServer);
-        $obj->save();
-
+        return $obj->save();
     }
 }

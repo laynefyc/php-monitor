@@ -6,7 +6,7 @@ trait TraitModel {
 
     public function insertData($data){
         $this->setRawAttributes($data,true);
-        $this->save();
+        return $this->save();
     }
     
     public function getListCommon($dto,$driver){
