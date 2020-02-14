@@ -3,11 +3,25 @@ language: php
 php:
   - 5.6
   - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+  - 7.4
 
 matrix:
-  include:
+  exclude:
     - php: 5.6
-      env: COVERAGE=1
+      env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.5.tar.gz"
+    - php: 7.0
+      env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
+	- php: 7.1
+      env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
+	- php: 7.2
+      env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
+	- php: 7.3
+      env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
+	- php: 7.4
+      env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
 
 before_script:
   - wget --no-check-certificate https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz && tar zxvf v4.1.7.tar.gz
@@ -17,23 +31,4 @@ before_script:
   - phpenv rehash
   - composer install --prefer-dist --dev --ignore-platform-reqs
 
-script:
-  - >
-    if [[ "$COVERAGE" == "0" ]]; then
-      echo;
-      echo "Running unit tests";
-      phpunit
-    fi
-  - >
-    if [[ "$COVERAGE" == "1" ]]; then
-      echo;
-      echo "Running unit tests with code-coverage";
-      phpunit --coverage-clover=unittest-coverage.clover
-    fi
-  - >
-    if [[ "$COVERAGE" == "1" ]]; then
-      echo;
-      echo "Uploading code coverage results";
-      wget https://scrutinizer-ci.com/ocular.phar
-      php ocular.phar code-coverage:upload --format=php-clover unittest-coverage.clover
-    fi
+script: phpunit
