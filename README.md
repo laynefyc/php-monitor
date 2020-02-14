@@ -236,7 +236,3 @@ Set in configuration file `src/config/config.php`,The information is as follows:
 	
 ## Feedback
 Please submit your issues.
-
-![微信号城边编程](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/code-log.png)
-
-[http://imgs.it2048.cn/code-log.png](http://imgs.it2048.cn/code-log.png)
