@@ -2,6 +2,3 @@
 /.idea/
 /.vscode/
 .DS_Store
-###> phpunit/phpunit ###
-/phpunit.xml
-###< phpunit/phpunit ###
