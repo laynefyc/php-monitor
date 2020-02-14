@@ -14,13 +14,13 @@ matrix:
       env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.5.tar.gz"
     - php: 7.0
       env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
-	- php: 7.1
+    - php: 7.1
       env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
-	- php: 7.2
+    - php: 7.2
       env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
-	- php: 7.3
+    - php: 7.3
       env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
-	- php: 7.4
+    - php: 7.4
       env: XHPROF_VERSION="https://github.com/tideways/php-xhprof-extension/archive/v4.1.7.tar.gz"
 
 before_script:
