@@ -2,6 +2,10 @@
 
 <div align="center">
 一个免费、易用、强大的PHP服务监控工具。
+
+[![Latest Stable Version](https://poser.pugx.org/laynefyc/php-monitor/v/stable.png)]
+(https://packagist.org/packages/laynefyc/php-monitor)
+[![Total Downloads](https://poser.pugx.org/laynefyc/php-monitor/downloads.png)](https://packagist.org/packages/laynefyc/php-monitor)
 </div>
 
 ![home](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/home.png)
@@ -50,7 +54,7 @@ tideways => 4.1.7
 ## php-monitor服务安装
 
 ````bash
-git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && composer update  --ignore-platform-reqs && cd public && php -S 127.0.0.1:8066
+composer create-project --prefer-dist --ignore-platform-reqs laynefyc/php-monitor php-monitor && cd php-monitor/public && php -S 127.0.0.1:8066
 ````
 
 访问 [http://127.0.0.1:8066](http://127.0.0.1:8066) 会要求输入账号和密码，默认都为 php
@@ -58,6 +62,11 @@ git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && compo
 ## 详细教程
 
 1. 下载&更新项目
+
+	````bash
+	composer create-project --prefer-dist --ignore-platform-reqs laynefyc/php-monitor php-monitor
+	````
+	或者
 
 	````bash
 	git clone https://github.com/laynefyc/php-monitor.git

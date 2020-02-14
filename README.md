@@ -4,6 +4,9 @@
 
 A free, flexible, powerful tool that helps you monitor PHP Service.
 
+[![Latest Stable Version](https://poser.pugx.org/laynefyc/php-monitor/v/stable.png)]
+(https://packagist.org/packages/laynefyc/php-monitor)
+[![Total Downloads](https://poser.pugx.org/laynefyc/php-monitor/downloads.png)](https://packagist.org/packages/laynefyc/php-monitor)
 </div>
 
 ![home](https://raw.githubusercontent.com/laynefyc/php-monitor/screenshot/screenshot/home.png)
@@ -50,7 +53,7 @@ tideways => 4.1.7
 # Install php-monitor
 
 ````bash
-git clone https://github.com/laynefyc/php-monitor.git && cd php-monitor && composer update  --ignore-platform-reqs && cd public && php -S 127.0.0.1:8066
+composer create-project --prefer-dist --ignore-platform-reqs laynefyc/php-monitor php-monitor && cd php-monitor/public && php -S 127.0.0.1:8066
 ````
 
 Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and password(php/php).
@@ -58,6 +61,11 @@ Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and passw
 ## Detailed installation tutorial
 
 1. Download & Update Projects
+
+	````bash
+	composer create-project --prefer-dist --ignore-platform-reqs laynefyc/php-monitor php-monitor
+	````
+	or
 
 	````bash
 	git clone https://github.com/laynefyc/php-monitor.git
