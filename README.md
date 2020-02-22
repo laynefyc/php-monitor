@@ -74,7 +74,7 @@ Visit [http://127.0.0.1:8066](http://127.0.0.1:8066) and input account and passw
 	cd php-monitor
 	composer update --ignore-platform-reqs
 	````
-2. The project can set data storage mode and supports mysql, mongodb, SQLite.	
+2. The project can set data storage mode and supports MySQL, MongoDB, SQLite.	
 Set in configuration file `src/config/config.php`,The information is as follows:
 	
 	````php
@@ -100,7 +100,7 @@ Set in configuration file `src/config/config.php`,The information is as follows:
 	````
 	SQLite is used by default in this project，if you use other databases, please uncomment them.
 	
-	If you want to use Mysql to run the following table creation statement (table name cannot be modified):
+	If you want to use MySQL to run the following table creation statement (table name cannot be modified):
 	
 	````sql
 	CREATE TABLE `php_monitor` (
