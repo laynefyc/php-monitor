@@ -37,7 +37,7 @@ trait TraitModel {
         if(!empty($dto['ip'])){
             $db->where('ip',$dto['ip']);
         }
-        
+
         $pid = $driver==='sqlite'?'rowid as id':'id';
         $rtn = $db->paginate(intval($dto['pageSize']),[
             $pid,'url','server_name','pmu','wt','cpu',
@@ -59,7 +59,15 @@ trait TraitModel {
             'server' => [],
             'funcList' => [],
             'flameGraph' => [],
-            'sql'=>[]
+            'sql'=>[],
+            'basic' => [
+                'url' => '',
+                'type' => '',
+                'request_time' => '',
+                'wt' => '',
+                'mu' => '',
+                'ip' => ''
+            ]
         ];
         if(!empty($dto['id'])){
             $model = self::find($dto['id']);
@@ -84,6 +92,14 @@ trait TraitModel {
             $rtn['sql'] = isset($list['sql'])?$list['sql']:[];
             $show = new Profile(isset($list['profile'])?$list['profile']:[]);
             $rtn['funcList'] = $show->getProfileBySort();
+            $rtn['basic'] = [
+                'url' => $model->url,
+                'type' => $model->type,
+                'request_time' => date('Y-m-d H:i:s',$model->request_time),
+                'wt' => $model->wt,
+                'mu' => $model->mu,
+                'ip' => $model->ip
+            ];
         }
         return $rtn;
     }

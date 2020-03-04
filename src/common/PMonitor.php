@@ -120,7 +120,7 @@ class PMonitor{
         }
         $requestTimeFloat =  explode(' ',microtime());
         $requestTsMicro = array('sec' => $requestTimeFloat[1], 'usec' => $requestTimeFloat[0]*1000000);
-        
+
         $data['meta'] = array(
             'url' => empty($action)?$uri:$action,
             'SERVER' => $_SERVER,
@@ -128,7 +128,7 @@ class PMonitor{
             'env' => $_ENV,
             'request_ts_micro' => $requestTsMicro
         );
-        
+
         $obj = new Format($data,self::$dbServer);
         return $obj->save();
     }
