@@ -76,7 +76,7 @@ class PMonitor{
         }
     }
 
-    public static function shutdown(){
+    public static function shutdown($action=''){
         if(self::$filter) return true;
         $extension = self::$extensionName;
         if ($extension == 'uprofiler') {
@@ -118,14 +118,11 @@ class PMonitor{
             $cmd = basename($_SERVER['argv'][0]);
             $uri = $cmd . ' ' . implode(' ', array_slice($_SERVER['argv'], 1));
         }
-        $requestTimeFloat = explode('.', $_SERVER['REQUEST_TIME_FLOAT']);
-        if (!isset($requestTimeFloat[1])) {
-            $requestTimeFloat[1] = 0;
-        }
-        $requestTsMicro = array('sec' => $requestTimeFloat[0], 'usec' => $requestTimeFloat[1]);
+        $requestTimeFloat =  explode(' ',microtime());
+        $requestTsMicro = array('sec' => $requestTimeFloat[1], 'usec' => $requestTimeFloat[0]*1000000);
         
         $data['meta'] = array(
-            'url' => $uri,
+            'url' => empty($action)?$uri:$action,
             'SERVER' => $_SERVER,
             'get' => $_GET,
             'env' => $_ENV,
