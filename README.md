@@ -232,6 +232,19 @@ Set in configuration file `src/config/config.php`,The information is as follows:
 	* MongoDB has the fastest storage speed. If you have high performance requirements, please use it first.
 	* Modify the profile.enable property of the configuration file to modify the sampling frequency. Generally speaking, it is not necessary to store all requests.For example, 'rand (1, 100) > 60' is to set the sampling rate to '40%';
 	* Modify the profiler.filter_path attribute of the configuration file to filter services that you do not want to collect, such as some intranet services that do not care about execution efficiency；
+
+7. Swoole support
+
+	````php
+	public function onReceive(\swoole_server $serv, $fd, $from_id, $dataSrc)
+    {
+		require '/home/www/cai/php-monitor/src/autoPrepend.php';
+
+		//your code
+		
+        \pm\common\PMonitor::shutdown($data['params']['route'],$serv->getClientInfo($fd,$from_id)['remote_ip'],'TCP');
+	}
+	````
 	
 ## TODO
 - [x] Sqlite storage mode development；

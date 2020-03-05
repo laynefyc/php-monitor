@@ -76,7 +76,7 @@ class PMonitor{
         }
     }
 
-    public static function shutdown($action=''){
+    public static function shutdown($action='',$ip='',$requestType=''){
         if(self::$filter) return true;
         $extension = self::$extensionName;
         if ($extension == 'uprofiler') {
@@ -120,6 +120,8 @@ class PMonitor{
         }
         $requestTimeFloat =  explode(' ',microtime());
         $requestTsMicro = array('sec' => $requestTimeFloat[1], 'usec' => $requestTimeFloat[0]*1000000);
+        if(!empty($requestType)){$_SERVER['REQUEST_METHOD'] = $requestType;}
+        if(!empty($ip)){$_SERVER['REMOTE_ADDR'] = $ip;}
 
         $data['meta'] = array(
             'url' => empty($action)?$uri:$action,

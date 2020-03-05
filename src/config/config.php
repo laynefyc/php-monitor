@@ -12,7 +12,10 @@ return [
     //     'database'  => 'php_monitor',
     //     'username'  => '',
     //     'password'  => 'abcd1234',
-    //     'charset'   => 'utf8mb4'
+    //     'charset'   => 'utf8mb4',
+    //    'options' => [
+    //        1005 => 16777216, //PDO::MYSQL_ATTR_MAX_BUFFER_SIZE and 16M
+    //    ]
     // ],
     //  'save' => [
     //      'driver'    => 'mongodb',

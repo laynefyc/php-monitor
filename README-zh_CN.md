@@ -233,6 +233,17 @@ composer create-project --prefer-dist --ignore-platform-reqs laynefyc/php-monito
 	* MongoDB的存储速度最快，如果对性能要求高，请优先使用它；
 	* 修改配置文件的 profiler.enable 属性来修改采样频率，通常来说并不需要将所有请求都存储。比如 `rand(1, 100) > 60` 就是设置采样率为`40%`；
 	* 修改配置文件的 profiler. filter_path 属性来过滤不想收集的服务，比如一些不关心执行效率的内网服务；
+
+7. Swoole支持
+
+	````php
+	public function onReceive(\swoole_server $serv, $fd, $from_id, $dataSrc)
+    {
+		require '/home/www/cai/php-monitor/src/autoPrepend.php';
+		//your code
+        \pm\common\PMonitor::shutdown($data['params']['route'],$serv->getClientInfo($fd,$from_id)['remote_ip'],'TCP');
+	}
+	````
 	
 ## TODO
 - [x] Sqlite存储方式开发；
