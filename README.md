@@ -2,7 +2,7 @@
 
 <div align="center">
 
-A free, flexible, powerful tool that helps you monitor PHP Service.
+A free, flexible, powerful tool that helps you monitor PHP Service and profiling PHP code. 
 
 [![Latest Stable Version](https://poser.pugx.org/laynefyc/php-monitor/v/stable.png)](https://packagist.org/packages/laynefyc/php-monitor)
 [![Total Downloads](https://poser.pugx.org/laynefyc/php-monitor/downloads.png)](https://packagist.org/packages/laynefyc/php-monitor)
@@ -235,16 +235,16 @@ Set in configuration file `src/config/config.php`,The information is as follows:
 
 7. Swoole support
 
-	````php
-	public function onReceive(\swoole_server $serv, $fd, $from_id, $dataSrc)
+    ````php
+    public function onReceive(\swoole_server $serv, $fd, $from_id, $dataSrc)
     {
-		require '/home/www/cai/php-monitor/src/autoPrepend.php';
-
-		//your code
-		
+        require '/home/www/cai/php-monitor/src/autoPrepend.php';
+    
+        //your code
+        
         \pm\common\PMonitor::shutdown($data['params']['route'],$serv->getClientInfo($fd,$from_id)['remote_ip'],'TCP');
-	}
-	````
+    }
+    ````
 	
 ## TODO
 - [x] Sqlite storage mode development；

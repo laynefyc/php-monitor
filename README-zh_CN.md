@@ -1,7 +1,7 @@
 <h1 align="center">php-monitor</h1>
 
 <div align="center">
-一个免费、易用、强大的PHP服务监控工具。
+一个免费、易用、强大的PHP服务监控工具。帮助开发者监控PHP服务，分析PHP性能。
 
 [![Latest Stable Version](https://poser.pugx.org/laynefyc/php-monitor/v/stable.png)](https://packagist.org/packages/laynefyc/php-monitor)
 [![Total Downloads](https://poser.pugx.org/laynefyc/php-monitor/downloads.png)](https://packagist.org/packages/laynefyc/php-monitor)
@@ -236,14 +236,16 @@ composer create-project --prefer-dist --ignore-platform-reqs laynefyc/php-monito
 
 7. Swoole支持
 
-	````php
-	public function onReceive(\swoole_server $serv, $fd, $from_id, $dataSrc)
+    ````php
+    public function onReceive(\swoole_server $serv, $fd, $from_id, $dataSrc)
     {
-		require '/home/www/cai/php-monitor/src/autoPrepend.php';
-		//your code
+        require '/home/www/cai/php-monitor/src/autoPrepend.php';
+    
+        //your code
+        
         \pm\common\PMonitor::shutdown($data['params']['route'],$serv->getClientInfo($fd,$from_id)['remote_ip'],'TCP');
-	}
-	````
+    }
+    ````
 	
 ## TODO
 - [x] Sqlite存储方式开发；
